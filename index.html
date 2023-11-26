@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: #7f85ff;
+            display: grid;
+            place-items: center;
+        }
+
+        .counter-container {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+
+        .boxes {
+            text-align: center;
+            margin: 0 80px;
+        }
+
+        .counter {
+            font-size: 50px;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #fff700;
+        }
+
+        .boxes i {
+            font-size: 50px;
+            color: #fff;
+        }
+
+        .boxes p {
+            font-size: 20px;
+            margin: 0;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="counter-container">
+        <div class="boxes">
+            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+            <div class="counter" data-target="10000"></div>
+            <p>Projects Completed</p>
+        </div>
+        <div class="boxes">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <div class="counter" data-target="15000"></div>
+            <p>Happy Clients</p>
+        </div>
+        <div class="boxes">
+            <i class="fa fa-tasks" aria-hidden="true"></i>
+            <div class="counter" data-target="5000"></div>
+            <p>Ongoing Projects</p>
+        </div>
+    </div>
+
+
+    <script>
+        const counters = document.querySelectorAll('.counter');
+
+        counters.forEach((counter) => {
+            counter.innerHTML = 0;
+
+            const runCounter = () => {
+                const setCounter = +counter.getAttribute('data-target');
+
+                const counterStart = Number(counter.innerHTML);
+
+                const incrBy = setCounter / 100;
+
+                if (counterStart < setCounter) {
+                    counter.innerHTML = Math.round(counterStart + incrBy);
+                    setTimeout(runCounter, 10);
+                } else {
+                    counter.innerHTML = setCounter;
+                }
+            }
+
+            runCounter();
+        });
+
+        
+    </script>
+</body>
+
+</html>
